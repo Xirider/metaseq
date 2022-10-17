@@ -45,7 +45,7 @@ class TestTraining(unittest.TestCase):
         ind = outs_list.index('"loss":')
         ans = outs_list[ind - 1][1:-2]
         ans = float(ans)
-        self.assertAlmostEqual(ans, 15.601)  # assertion of loss after 10 iterations
+        self.assertAlmostEqual(ans, 15.611, 3)  # assertion of loss after 10 iterations
         assert "done training" in outs  # assertion of training completion succesfully
         cleanup_checkpoints = subprocess.Popen(
             "rm -r ./test-checkpoint".split(),
