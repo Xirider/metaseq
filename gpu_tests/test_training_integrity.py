@@ -29,7 +29,7 @@ class TestTraining(unittest.TestCase):
             "python3 metaseq/launcher/opt_baselines.py   "
             "--prefix train.8m --model-size 8m    --checkpoints-dir ./test-checkpoint    "
             "--tensorboard-logdir ./test-checkpoint     --num-trials 1  --azure   --num-gpus 4 --num-nodes 1   --seed 1   "
-            "--circleci --local --disable-validation --max-epoch 5 --max-update 5 --batch-size 1024"
+            "--circleci --local --disable-validation --max-epoch 5 --max-update 5"
         )
         p = subprocess.Popen(
             command.split(),
