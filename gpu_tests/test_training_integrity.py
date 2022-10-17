@@ -29,7 +29,7 @@ class TestTraining(unittest.TestCase):
             "python3 metaseq/launcher/opt_baselines.py   "
             "--prefix train.8m --model-size 8m    --checkpoints-dir ./test-checkpoint    "
             "--tensorboard-logdir ./test-checkpoint     --num-trials 1  --azure   --num-gpus 4 --num-nodes 1   --seed 1   "
-            "--circleci --local --disable-validation --max-epoch 5 --max-update 5"
+            "--circleci --local --disable-validation --max-epoch 5 --max-update 5 --benchmark"
         )
         p = subprocess.Popen(
             command.split(),
@@ -45,7 +45,7 @@ class TestTraining(unittest.TestCase):
         ind = outs_list.index('"loss":')
         ans = outs_list[ind - 1][1:-2]
         ans = float(ans)
-        self.assertAlmostEqual(ans, 15.611, 3)  # assertion of loss after 10 iterations
+        self.assertAlmostEqual(ans, 10.484, 3)  # assertion of loss after 10 iterations
         assert "done training" in outs  # assertion of training completion succesfully
         cleanup_checkpoints = subprocess.Popen(
             "rm -r ./test-checkpoint".split(),
