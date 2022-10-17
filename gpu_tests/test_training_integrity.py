@@ -13,8 +13,8 @@ import tarfile
 
 @unittest.skipIf(not torch.cuda.is_available(), "test requires a GPU")
 @unittest.skipIf(
-    DistributedTrainingConfig.distributed_world_size != 8,
-    "test requires at least 8 GPU's",
+    DistributedTrainingConfig.distributed_world_size != 4,
+    "test requires 4 GPUs",
 )
 class TestTraining(unittest.TestCase):
     def test_training(self):
@@ -28,8 +28,8 @@ class TestTraining(unittest.TestCase):
         command = (
             "python3 metaseq/launcher/opt_baselines.py   "
             "--prefix train.8m --model-size 8m    --checkpoints-dir ./test-checkpoint    "
-            "--tensorboard-logdir ./test-checkpoint     --num-trials 1  --azure   --num-gpus 8 --num-nodes 1   --seed 1   "
-            "--circleci --local --disable-validation --max-epoch 5 --max-update 5"
+            "--tensorboard-logdir ./test-checkpoint     --num-trials 1  --azure   --num-gpus 4 --num-nodes 1   --seed 1   "
+            "--circleci --local --disable-validation --max-epoch 5 --max-update 5 --batch-size 1024"
         )
         p = subprocess.Popen(
             command.split(),
