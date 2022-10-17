@@ -27,7 +27,7 @@ class TestTraining(unittest.TestCase):
         file.close()
         command = (
             "python3 metaseq/launcher/opt_baselines.py   "
-            "--prefix train.8m --model-size 8m    --checkpoints-dir ./test-checkpoint    "
+            "--prefix train.8m --model-size 8m    --checkpoints-dir ./test-checkpoint-training-integrity    "
             "--tensorboard-logdir ./test-checkpoint     --num-trials 1  --azure   --num-gpus 4 --num-nodes 1   --seed 1   "
             "--circleci --local --disable-validation --max-epoch 5 --max-update 5 --benchmark"
         )
@@ -48,7 +48,7 @@ class TestTraining(unittest.TestCase):
         self.assertAlmostEqual(ans, 10.484, 3)  # assertion of loss after 10 iterations
         assert "done training" in outs  # assertion of training completion succesfully
         cleanup_checkpoints = subprocess.Popen(
-            "rm -r ./test-checkpoint".split(),
+            "rm -r ./test-checkpoint-training-integrity".split(),
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             universal_newlines=True,
