@@ -11,7 +11,7 @@ import urllib.request
 import tarfile
 
 
-@unittest.skipIf(not torch.cuda.is_available(), "test requires a GPU")
+@unittest.skipIf(not torch.cuda.is_available(), "test requires 4 GPUs, none found")
 @unittest.skipIf(
     DistributedTrainingConfig.distributed_world_size != 4,
     "test requires 4 GPUs",
